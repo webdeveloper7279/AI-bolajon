@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, BarChart3, Clock, Target, Trophy } from "lucide-react";
@@ -16,7 +16,7 @@ function formatTime(sec: number) {
   return `${m} daqiqa`;
 }
 
-export default function DashboardPage() {
+function DashboardPageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const childId = searchParams.get("childId");
@@ -162,5 +162,13 @@ export default function DashboardPage() {
       </main>
       <BottomNav />
     </div>
+  );
+}
+
+export default function DashboardPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen noise-bg" />}>
+      <DashboardPageContent />
+    </Suspense>
   );
 }

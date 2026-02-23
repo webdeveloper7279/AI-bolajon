@@ -7,7 +7,7 @@ interface FloatingInputProps {
   label: string;
   value: string;
   onChange: (value: string) => void;
-  type?: "text" | "email" | "number";
+  type?: "text" | "email" | "number" | "password";
   placeholder?: string;
   error?: string;
   disabled?: boolean;

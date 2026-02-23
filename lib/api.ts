@@ -7,7 +7,7 @@ function getToken(): string | null {
 
 export async function api<T>(
   path: string,
-  options: RequestInit & { body?: object } = {}
+  options: Omit<RequestInit, "body"> & { body?: object } = {}
 ): Promise<T> {
   const { body, ...rest } = options;
   const token = getToken();

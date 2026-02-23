@@ -68,7 +68,9 @@ export function useSocket() {
       if (currentChildId) updateChildXp(currentChildId, data.totalXp, data.level);
     };
     s.on("xp_updated", handler);
-    return () => s.off("xp_updated", handler);
+    return () => {
+      s.off("xp_updated", handler);
+    };
   }, [currentChildId, updateChildXp, token]);
 
   return { socket: socketRef.current, onXpUpdated, onAchievementUnlocked, onLeaderboardUpdated };

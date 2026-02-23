@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -17,7 +17,7 @@ function formatDuration(sec: number) {
   return `${m}:${s.toString().padStart(2, "0")}`;
 }
 
-export default function VideosPage() {
+function VideosPageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const watchId = searchParams.get("id");
@@ -153,5 +153,13 @@ export default function VideosPage() {
       </main>
       <BottomNav />
     </div>
+  );
+}
+
+export default function VideosPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen noise-bg" />}>
+      <VideosPageContent />
+    </Suspense>
   );
 }

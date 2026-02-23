@@ -1,16 +1,17 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Gamepad2, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { GlassCard } from "@/components/ui/GlassCard";
+import { BottomNav } from "@/components/layout/BottomNav";
 import { useAuthStore } from "@/store/authStore";
 import { games as gamesApi } from "@/lib/api";
 
-export default function GamesPage() {
+function GamesPageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const type = (searchParams.get("type") as "math" | "logic") || null;
@@ -189,5 +190,13 @@ export default function GamesPage() {
       </main>
       <BottomNav />
     </div>
+  );
+}
+
+export default function GamesPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen noise-bg" />}>
+      <GamesPageContent />
+    </Suspense>
   );
 }
