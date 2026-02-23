@@ -8,6 +8,7 @@ import { Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { GlassCard } from "@/components/ui/GlassCard";
 import { useAuthStore } from "@/store/authStore";
+import { BottomNav } from "@/components/layout/BottomNav";
 
 export default function SplashPage() {
   const router = useRouter();
