@@ -63,7 +63,7 @@ export default function LoginPage() {
         <GlassCard hover={false} className="p-6">
           <form onSubmit={handleSubmit} className="space-y-6">
             <FloatingInput label="Email" value={email} onChange={setEmail} type="email" required />
-            <FloatingInput label="Parol" value={password} onChange={setPassword} type="password" required />
+            <FloatingInput label="Parol" value={password} onChange={setPassword} type="text" required />
             {error && <p className="text-red-400 text-sm">{error}</p>}
             <Button type="submit" size="lg" className="w-full" disabled={loading}>
               {loading ? "Kiring..." : "Kirish"}
